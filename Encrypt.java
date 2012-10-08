@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * @author Dustin Evans
- *
+ * This class encrypts any string to SHA-256
  */
 public class Encrypt {
 

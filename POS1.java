@@ -1,6 +1,3 @@
-/**
- * 
- */
 package openPOS;
 
 import java.awt.Dimension;
@@ -27,7 +24,7 @@ import javax.swing.plaf.metal.OceanTheme;
  */
 public class POS1 extends JFrame {
 
-	private static String store = "Store Name";
+	private static String store = null;
 	private static final long serialVersionUID = -2573006206249959776L;
 	private static int ticketnum;
 
@@ -70,7 +67,7 @@ public class POS1 extends JFrame {
 				
 		//------Variables for components		
 				String a = StartScreen.GetUsername();
-				store = "string";
+				store = POS1.GetStore();
 				ticketnum = 0001;
 				String ticknum = POS1.SetTicknum(ticketnum);
 				
@@ -87,7 +84,8 @@ public class POS1 extends JFrame {
 				JLabel lassociate = new JLabel("Associate Name");
 				JTextField tassociate = new JTextField(a);
 				JLabel lstore = new JLabel("Store Name");
-				JTextField tstore = new JTextField(store);
+				final JTextField tstore = new JTextField(store);
+				
 				
 				//Panel2
 				JLabel itemlist = new JLabel("Item List");
@@ -215,8 +213,8 @@ public class POS1 extends JFrame {
 		POS1.store=s;
 	}//end set method
 	
-	public static String GetStore(String s){
-		s=POS1.store;
+	public static String GetStore(){
+		String s=Login.GetStore2();
 		return s;
 	}//end get method
 	
@@ -224,7 +222,7 @@ public class POS1 extends JFrame {
 		String ticknum = String.valueOf(i);
 		int l = ticknum.length();
 		if(l<5){
-			System.err.println("Should be at least 5 numbers.");
+			System.err.println("ticket number should be at least 5 numbers.");
 			ticknum = "0000"+ticknum;
 		}//end if
 		return ticknum;

@@ -9,6 +9,8 @@ package openPOS;
  */
 public class POSWorks {
 
-	public void 
+	public void items(){
+		
+	}
 	
 }

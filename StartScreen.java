@@ -20,7 +20,10 @@ public class StartScreen extends JFrame{
 	private static String password;
 	private static final long serialVersionUID = -4824059629095884651L;
 
-	//Constructor method	
+	/**
+	 * Constructor Method
+	 */
+	
 	public StartScreen(){
 		
 		//define main GUI object
@@ -80,7 +83,7 @@ public class StartScreen extends JFrame{
 					username=tusername.getText();
 					password=tpassword.getText();
 		    		String login = GetLogin(username,password);
-		    		System.err.println(login);
+		    		System.err.println("Hashed username and password:"+login);
 		    		boolean user=Login.ExistingUser(login);
 						if(user==true){
 							new POS1();
@@ -102,6 +105,12 @@ public class StartScreen extends JFrame{
 		    
 	}//End Constructor
 	
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return String "login"
+	 */
 	public static String GetLogin(String username, String password){
 		//this method gets the username and password that have been typed in
 		String x=username;
@@ -112,10 +121,14 @@ public class StartScreen extends JFrame{
 		return login;
 	}//End method
 	
+	/**
+	 * 
+	 * @return String
+	 * Translates to username from StartScreen input.
+	 */
 	public static String GetUsername(){
 		String a = StartScreen.username;
 		return a;
 	}
 	
 }//End Class
-

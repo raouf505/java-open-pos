@@ -1,6 +1,3 @@
-/**
- * 
- */
 package openPOS;
 
 import java.io.*;
@@ -29,12 +26,12 @@ public class Login {
 			fr = new FileReader(f);
 			BufferedReader br = new BufferedReader(fr);
 			int lineCount = count(fileName);
-			System.err.println(lineCount);// TODO erase this line when coding is complete
+			System.err.println("Line count:"+lineCount);// TODO erase this line when coding is complete
 			int i = 1;
 			while(i<=lineCount){
 			String line=br.readLine();
 			boolean same = input.equals(line);
-			System.err.println(same);
+			System.err.println("Matched user="+same);
 			if(same==true){
 				isUser=true;
 				i=lineCount;
@@ -52,6 +49,14 @@ public class Login {
 		}
 		return isUser;
 	}
+	
+	/**
+	 * The following method takes string as an input and has a void return type.
+	 * Writes String "input" to a file.
+	 * Variable "input" translates to a SHA hash of the username and password input by the user
+	 * in the NewUser Class.
+	 * @param input
+	 */
 	public static void NewUser(String input){
 		try {
 			PrintWriter pw = new PrintWriter(new FileOutputStream(new File("users.txt"),true));
@@ -61,6 +66,54 @@ public class Login {
 			e1.printStackTrace();
 		}
 	}
+	
+	/**
+	 * The following method get the store name from the file called "data".
+	 * Returns a string.
+	 * @return
+	 */
+	public static String GetStore2(){
+		
+		String fileName="data";
+		File f = new File(fileName);
+		FileReader fr;
+		String storename2;
+			try {
+				fr = new FileReader(f);
+				BufferedReader br = new BufferedReader(fr);
+				int lineCount = count(fileName);
+				int i = 1;
+					while(i<=lineCount){
+						String line=br.readLine();
+						if(line!=null){
+							storename2 = line;
+							i=lineCount;
+							return storename2;
+						}
+						else{
+							System.err.println("No Store Name Configured");
+							storename2 = "Store";
+							i=lineCount;
+							return storename2;
+						}
+					}
+				br.close();
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			storename2=null;
+			return storename2;
+	}
+	
+	/**
+	 * The following method counts lines in a file.
+	 * @param filename
+	 * @return
+	 * @throws IOException
+	 */
+	
 	public static int count(String filename) throws IOException {
 	    InputStream is = new BufferedInputStream(new FileInputStream(filename));
 	    try {
