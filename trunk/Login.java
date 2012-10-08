@@ -11,6 +11,15 @@ import java.io.*;
  */
 public class Login {
 
+	/**
+	This class is used to test the login information provided by the user against the user database.
+	If the user exists and the password is correct, the POS1 class is called.
+	If the username+password hash does not match, the NotUser class is called.
+	The ExistingUser method accepts string and returns boolean.
+	The NewUser method accepts string and is void.
+	The count method is used to count the number of lines in a file and returns integer.
+	**/
+	
 	public static boolean ExistingUser(String input) {
 		String fileName="users.txt";
 		boolean isUser=false;
