@@ -62,9 +62,10 @@ public class Settings extends JFrame{
 		settings.pack();
 		settings.setVisible(true);
 		
+		/**
+		 * TODO Doesn't work for some reason.
+		 */
 		submit.addActionListener(new ActionListener(){
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				String a = tstorename.getText();
 				POS1.SetStore(a);				
