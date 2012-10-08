@@ -68,7 +68,7 @@ public class Settings extends JFrame{
 		submit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				String a = tstorename.getText();
-				POS1.SetStore(a);				
+				Login.NewStoreName(a);				
 			}
 			
 		});

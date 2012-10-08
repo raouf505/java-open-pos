@@ -74,7 +74,7 @@ public class Login {
 	 */
 	public static String GetStore2(){
 		
-		String fileName="data";
+		String fileName="settings";
 		File f = new File(fileName);
 		FileReader fr;
 		String storename2;
@@ -105,6 +105,16 @@ public class Login {
 			}
 			storename2=null;
 			return storename2;
+	}
+	
+	public static void NewStoreName(String input){
+		try {
+			PrintWriter pw = new PrintWriter(new FileOutputStream(new File("settings"),false));
+			pw.print(input);
+			pw.close();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
 	}
 	
 	/**
