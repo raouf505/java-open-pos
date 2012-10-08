@@ -1,11 +1,9 @@
-/**
- * 
- */
 package openPOS;
 
 /**
  * @author Dustin Evans
  *
+ *This class is the starting point for all users. It begins with a gui that asks for a username and password.
  */
 
 //Import external classes
@@ -17,8 +15,9 @@ import java.awt.event.*;
 
 public class StartScreen extends JFrame{
 	
-	static String username;
-	static String password;
+	//define variables and make them invisible
+	private static String username;
+	private static String password;
 	private static final long serialVersionUID = -4824059629095884651L;
 
 	//Constructor method	
@@ -36,22 +35,22 @@ public class StartScreen extends JFrame{
 
 				
 		//------Begin Try-Catch for setting look and feel
-			try {
-				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (InstantiationException e1) {
-					e1.printStackTrace();
-				} catch (IllegalAccessException e1) {
-					e1.printStackTrace();
-				} catch (UnsupportedLookAndFeelException e1) {
-					e1.printStackTrace();
-				}
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			} catch (InstantiationException e1) {
+				e1.printStackTrace();
+			} catch (IllegalAccessException e1) {
+				e1.printStackTrace();
+			} catch (UnsupportedLookAndFeelException e1) {
+				e1.printStackTrace();
+			}
 		//------End Try-Catch for setting look and feel
 				
 
 				
-		//------Define GUI Elements
+			//Define GUI Elements
 			MetalLookAndFeel.setCurrentTheme(new OceanTheme());
 			JLabel title = new JLabel("Welcome to Open POS");
 			JLabel lUserName = new JLabel("Type your User Name");
@@ -62,44 +61,26 @@ public class StartScreen extends JFrame{
 			title.setPreferredSize(new Dimension(510,0));
 			final JTextField tusername = new JTextField("");
 			final JTextField tpassword = new JTextField("");
-			username=tusername.getText();
-			password=tpassword.getText();
 				
-		//------Add GUI elements to content pane
+			//Add GUI elements to content pane
 			startScreen.setLocation(450,300);
 			startScreen.add(title);
 			startScreen.add(lUserName);
 			startScreen.add(tusername);
 			startScreen.add(lpassword);
 			startScreen.add(tpassword);
-			
-			tpassword.addActionListener(new ActionListener(){
-
-			@Override
-				public void actionPerformed(ActionEvent e) {
-					String login=GetLogin();
-					boolean user=Login.ExistingUser(login);
-						if(user==true){
-							new POS1();
-							startScreen.dispose();
-						}
-						else{
-							new NotUser();
-						}
-					user=false;
-					login=null;
-					
-				}//End actionPerformed
-			});
 			startScreen.add(submit);
 			startScreen.add(newuser);
 			startScreen.pack();
 			startScreen.setVisible(true);
 				
-		//------Add Listener and events for the button				
+			//Add Listener and events for the button------Method
 		    submit.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e){
-		    		String login = GetLogin();
+					username=tusername.getText();
+					password=tpassword.getText();
+		    		String login = GetLogin(username,password);
+		    		System.err.println(login);
 		    		boolean user=Login.ExistingUser(login);
 						if(user==true){
 							new POS1();
@@ -108,27 +89,33 @@ public class StartScreen extends JFrame{
 						else{
 							new NotUser();
 						}
-					user=false;
-					login=null;
 		        }//end actionPerformed
 		    });//end action listener
 		        
-		//------Add Listener and events for the button
+		    //Add Listener and events for the button------Method
 		    newuser.addActionListener(new ActionListener() {
 					//Add Listener and events for the button
 		    	public void actionPerformed(ActionEvent e){
 					new NewUser();
 			    }//end actionPerformed
 		    });//end action listener
+		    
 	}//End Constructor
 	
-	public String GetLogin(){
+	public static String GetLogin(String username, String password){
 		//this method gets the username and password that have been typed in
-		String x = StartScreen.username;
-		String y = StartScreen.password;
-		String username = Encrypt.sha256(x);
-		String password = Encrypt.sha256(y);
-		String login = x+","+username+","+password;
+		String x=username;
+		String y=password;
+		String username1 = Encrypt.sha256(x);
+		String password1 = Encrypt.sha256(y);
+		String login = x+","+username1+","+password1;
 		return login;
+	}//End method
+	
+	public static String GetUsername(){
+		String a = StartScreen.username;
+		return a;
 	}
+	
 }//End Class
+
