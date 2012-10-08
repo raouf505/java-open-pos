@@ -48,9 +48,9 @@ public class POS1 extends JFrame {
 		split4.setDividerSize(2);
 		
 		//------Begin window listner 
-				POS.addWindowListener(new WindowAdapter() {
+			POS.addWindowListener(new WindowAdapter() {
 				public void windowClosing(WindowEvent e) {System.exit(0);}
-				});
+			});
 		//------End window listner
 				
 
@@ -69,7 +69,7 @@ public class POS1 extends JFrame {
 				}
 				
 		//------Variables for components		
-				String a = StartScreen.z;
+				String a = StartScreen.GetUsername();
 				store = "string";
 				ticketnum = 0001;
 				String ticknum = POS1.SetTicknum(ticketnum);
