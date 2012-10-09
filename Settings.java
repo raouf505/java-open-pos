@@ -24,16 +24,16 @@ public class Settings extends JFrame{
 	public Settings() {
 		//define main GUI object
 		final JFrame settings = new JFrame("Settings");
-		
-//------Begin window listner 
-		settings.addWindowListener(new WindowAdapter() {
-		public void windowClosing(WindowEvent e) {settings.dispose();}
-		});
-//------End window listner
-		
 
-		
-//------Begin Try-Catch for setting look and feel
+		//------Begin window listner 
+		settings.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {settings.dispose();}
+		});
+		//------End window listner
+
+
+
+		//------Begin Try-Catch for setting look and feel
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		} catch (ClassNotFoundException e1) {
@@ -45,23 +45,23 @@ public class Settings extends JFrame{
 		} catch (UnsupportedLookAndFeelException e1) {
 			e1.printStackTrace();
 		}
-//------End Try-Catch for setting look and feel
-		
+		//------End Try-Catch for setting look and feel
 
-		
-//------Define GUI Elements
+
+
+		//------Define GUI Elements
 		MetalLookAndFeel.setCurrentTheme(new OceanTheme());
 		JLabel lstorename = new JLabel("Change store name");
 		final JTextField tstorename = new JTextField();
 		JButton submit = new JButton("Submit");
 		settings.getContentPane().setLayout(new GridLayout(0,1,5,5));
-		
+
 		settings.add(lstorename);
 		settings.add(tstorename);
 		settings.add(submit);
 		settings.pack();
 		settings.setVisible(true);
-		
+
 		/**
 		 * TODO Doesn't work for some reason.
 		 */
@@ -70,7 +70,7 @@ public class Settings extends JFrame{
 				String a = tstorename.getText();
 				Login.NewStoreName(a);				
 			}
-			
+
 		});
 	}
 
