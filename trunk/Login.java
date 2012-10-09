@@ -15,8 +15,8 @@ public class Login {
 	The ExistingUser method accepts string and returns boolean.
 	The NewUser method accepts string and is void.
 	The count method is used to count the number of lines in a file and returns integer.
-	**/
-	
+	 **/
+
 	public static boolean ExistingUser(String input) {
 		String fileName="users.txt";
 		boolean isUser=false;
@@ -29,17 +29,17 @@ public class Login {
 			System.err.println("Line count:"+lineCount);// TODO erase this line when coding is complete
 			int i = 1;
 			while(i<=lineCount){
-			String line=br.readLine();
-			boolean same = input.equals(line);
-			System.err.println("Matched user="+same);
-			if(same==true){
-				isUser=true;
-				i=lineCount;
-			}
-			else{
-				System.err.println("no match");// TODO erase this line when coding is complete
-			}
-			++i;
+				String line=br.readLine();
+				boolean same = input.equals(line);
+				System.err.println("Matched user="+same);
+				if(same==true){
+					isUser=true;
+					i=lineCount;
+				}
+				else{
+					System.err.println("no match");// TODO erase this line when coding is complete
+				}
+				++i;
 			}
 			br.close();
 		} catch (FileNotFoundException e1) {
@@ -49,7 +49,7 @@ public class Login {
 		}
 		return isUser;
 	}
-	
+
 	/**
 	 * The following method takes string as an input and has a void return type.
 	 * Writes String "input" to a file.
@@ -66,47 +66,47 @@ public class Login {
 			e1.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * The following method get the store name from the file called "data".
 	 * Returns a string.
 	 * @return
 	 */
 	public static String GetStore2(){
-		
+
 		String fileName="settings";
 		File f = new File(fileName);
 		FileReader fr;
 		String storename2;
-			try {
-				fr = new FileReader(f);
-				BufferedReader br = new BufferedReader(fr);
-				int lineCount = count(fileName);
-				int i = 1;
-					while(i<=lineCount){
-						String line=br.readLine();
-						if(line!=null){
-							storename2 = line;
-							i=lineCount;
-							return storename2;
-						}
-						else{
-							System.err.println("No Store Name Configured");
-							storename2 = "Store";
-							i=lineCount;
-							return storename2;
-						}
-					}
-				br.close();
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
+		try {
+			fr = new FileReader(f);
+			BufferedReader br = new BufferedReader(fr);
+			int lineCount = count(fileName);
+			int i = 1;
+			while(i<=lineCount){
+				String line=br.readLine();
+				if(line!=null){
+					storename2 = line;
+					i=lineCount;
+					return storename2;
+				}
+				else{
+					System.err.println("No Store Name Configured");
+					storename2 = "Store";
+					i=lineCount;
+					return storename2;
+				}
 			}
-			storename2=null;
-			return storename2;
+			br.close();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		storename2=null;
+		return storename2;
 	}
-	
+
 	public static void NewStoreName(String input){
 		try {
 			PrintWriter pw = new PrintWriter(new FileOutputStream(new File("settings"),false));
@@ -116,32 +116,32 @@ public class Login {
 			e1.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * The following method counts lines in a file.
 	 * @param filename
 	 * @return
 	 * @throws IOException
 	 */
-	
+
 	public static int count(String filename) throws IOException {
-	    InputStream is = new BufferedInputStream(new FileInputStream(filename));
-	    try {
-	        byte[] c = new byte[1024];
-	        int count = 0;
-	        int readChars = 0;
-	        boolean empty = true;
-	        while ((readChars = is.read(c)) != -1) {
-	            empty = false;
-	            for (int i = 0; i < readChars; ++i) {
-	                if (c[i] == '\n')
-	                    ++count;
-	            }
-	        }
-	        return (count == 0 && !empty) ? 1 : count;
-	    } finally {
-	        is.close();
-	    }
+		InputStream is = new BufferedInputStream(new FileInputStream(filename));
+		try {
+			byte[] c = new byte[1024];
+			int count = 0;
+			int readChars = 0;
+			boolean empty = true;
+			while ((readChars = is.read(c)) != -1) {
+				empty = false;
+				for (int i = 0; i < readChars; ++i) {
+					if (c[i] == '\n')
+						++count;
+				}
+			}
+			return (count == 0 && !empty) ? 1 : count;
+		} finally {
+			is.close();
+		}
 	}
 
 }
