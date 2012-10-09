@@ -32,7 +32,7 @@ public class POS1 extends JFrame {
 		final JFrame POS = new JFrame("Open POS");
 		JPanel panel1 = new JPanel(new GridLayout(2,3));
 		JPanel panel2 = new JPanel(new GridLayout(2,4));
-		JPanel panel3 = new JPanel(new GridLayout(6,1));
+		JPanel panel3 = new JPanel(new GridLayout(24,1));
 		JPanel panel4 = new JPanel(new GridLayout(6,1));
 		JPanel panel5 = new JPanel(new GridLayout(7,1));
 		JSplitPane split1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,panel4,panel5);
@@ -93,15 +93,18 @@ public class POS1 extends JFrame {
 		JLabel litemnum = new JLabel("Item #");
 		JLabel lprice = new JLabel("Price");
 		JLabel lqty = new JLabel("Quantity");
-		JList<String> sitemlist = new JList<String>();
+		String[] abcd = {"shampoo","harispray","straightener"};
+		JList<String> sitemlist = new JList<String>(abcd);
 		JList<String> sitemnum = new JList<String>();
 		JList<String> sprice = new JList<String>();
 		JList<String> sqty = new JList<String>();
 
 		//Panel3
+		JLabel lItemNumber= new JLabel("Item Number");
 		JLabel lItemName = new JLabel("Item Name");
 		JLabel lqty2 = new JLabel("Quantity");
 		JLabel lprice2 = new JLabel("Price");
+		JTextField tItemNumber = new JTextField();
 		JTextField tItemName = new JTextField();
 		JTextField tqty2 = new JTextField();
 		JTextField tprice = new JTextField();
@@ -139,6 +142,7 @@ public class POS1 extends JFrame {
 		panel1.add(lstore);
 		panel1.add(empty);
 		panel1.add(tTicket);
+		tTicket.setEditable(false);
 		panel1.add(tassociate);
 		panel1.add(tstore);
 
@@ -157,6 +161,8 @@ public class POS1 extends JFrame {
 		panel2.add(sqty);
 
 		//------Add GUI elements to panel3
+		panel3.add(lItemNumber);
+		panel3.add(tItemNumber);
 		panel3.add(lItemName);
 		panel3.add(tItemName);
 		panel3.add(lqty2);
