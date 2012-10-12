@@ -68,7 +68,7 @@ public class Login {
 	}
 
 	/**
-	 * The following method get the store name from the file called "data".
+	 * The following method get the store name from the file called "settings".
 	 * Returns a string.
 	 * @return
 	 */
@@ -107,6 +107,11 @@ public class Login {
 		return storename2;
 	}
 
+	/**
+	 * Prints the store name to a file
+	 * @param input
+	 */
+
 	public static void NewStoreName(String input){
 		try {
 			PrintWriter pw = new PrintWriter(new FileOutputStream(new File("settings"),false));
@@ -142,6 +147,36 @@ public class Login {
 		} finally {
 			is.close();
 		}
+	}
+
+	public static String[] getInventory(String input) {
+		String fileName="inventory.txt";
+		File f = new File(fileName);
+		try {
+			FileReader fr = new FileReader(f);
+			BufferedReader br = new BufferedReader(fr);
+			int lineCount = count(fileName);
+			for(int i=1;i<=lineCount;i++){
+				String[] a;
+				String line=br.readLine();
+				a=line.split(",");
+				String b=a[1];
+				if(b.equals(input)){
+					i=lineCount;
+					return a;
+				}
+			}
+
+			br.close();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} catch (NullPointerException e1){
+			System.err.println("String array is null.");
+		}
+		String[] a = {"null","null","null"};
+		return a;
 	}
 
 }
