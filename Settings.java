@@ -1,6 +1,3 @@
-/**
- * 
- */
 package openPOS;
 
 import java.awt.GridLayout;
@@ -8,14 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.*;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.metal.OceanTheme;
 
 /**
  * @author Dustin Evans
  *
  */
-import javax.swing.*;
-import javax.swing.plaf.metal.MetalLookAndFeel;
-import javax.swing.plaf.metal.OceanTheme;
 
 public class Settings extends JFrame{
 
@@ -23,7 +20,7 @@ public class Settings extends JFrame{
 
 	public Settings() {
 		//define main GUI object
-		final JFrame settings = new JFrame("Settings");
+		JFrame settings = new JFrame("Settings");
 
 		//------Begin window listner 
 		settings.addWindowListener(new WindowAdapter() {
@@ -52,16 +49,14 @@ public class Settings extends JFrame{
 		//------Define GUI Elements
 		MetalLookAndFeel.setCurrentTheme(new OceanTheme());
 		JLabel lstorename = new JLabel("Change store name");
-		final JTextField tstorename = new JTextField();
+		JTextField tstorename = new JTextField();
 		JButton submit = new JButton("Submit");
 		settings.getContentPane().setLayout(new GridLayout(0,1,5,5));
-
 		settings.add(lstorename);
 		settings.add(tstorename);
 		settings.add(submit);
 		settings.pack();
 		settings.setVisible(true);
-
 		/**
 		 * TODO Doesn't work for some reason.
 		 */
@@ -70,7 +65,6 @@ public class Settings extends JFrame{
 				String a = tstorename.getText();
 				Login.NewStoreName(a);				
 			}
-
 		});
 	}
 
